@@ -2,6 +2,7 @@ Here's the updated README with the requested changes:
 
 # AlwaysReddy Add to Daily Note
 This is an extension for the [AlwaysReddy Voice Assistant](https://github.com/ILikeAI/AlwaysReddy), it allows you to easily transcribe voice recordings to note taking system.
+This code was created as a part of this video: https://youtu.be/X0Bd20EDxfQ
 
 ### How it works:
 1. Press the hotkey to start recording ("ctrl+alt+f" by default)
