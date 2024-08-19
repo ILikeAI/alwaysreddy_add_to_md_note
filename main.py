@@ -12,7 +12,7 @@ class AddToMarkDownNote(BaseAction):
                             double_tap=self.AR.save_clipboard_text)
         
         # Configuration options
-        self.notes_directory = Path(r"")
+        self.notes_directory = Path(r"")#Add the path to the directory where you want to save the notes
         self.use_daily_notes = True  # Set to False to use a fixed note
         self.fixed_note_name = "fixed_note.md"  # Name of the fixed note if not using daily notes
         self.daily_note_format = "%m-%d-%y"  # Format for daily note filenames
@@ -25,8 +25,7 @@ class AddToMarkDownNote(BaseAction):
         self.use_add_tags_or_bullet_points = True #If this is true the LLM will try to add tags or bullet points to the note
         
         self.user_instructions = """
-        I sometimes take notes about AlwaysReddy, but the transcription system processes it as "always ready", if seem me say about "always ready" make sure to tag it as "AlwaysReddy".
-        Use tags like: "#idea", "#thought"
+        AlwaysReddy is the name of one of my projects, if you see the words "always reddy" tag the note with "#alwaysReddy", only do this when the note explicitly mentions the project.
         Only add bullet points if the note is longer than a few sentences.
         Always use camel case for the tags.
         """#This is an example of user instructions that will be injected into the system prompt, please modify it to fit your needs
