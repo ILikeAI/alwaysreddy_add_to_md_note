@@ -22,13 +22,14 @@ class AddToMarkDownNote(BaseAction):
         # self.daily_note_format = "%d-%m-%Y"
         # self.daily_note_format = "%B %d, %Y"
 
-        self.use_add_tags_or_bullet_points = True
+        self.use_add_tags_or_bullet_points = True #If this is true the LLM will try to add tags or bullet points to the note
+        
         self.user_instructions = """
         I sometimes take notes about AlwaysReddy, but the transcription system processes it as "always ready", if seem me say about "always ready" make sure to tag it as "AlwaysReddy".
         Use tags like: "#idea", "#thought"
         Only add bullet points if the note is longer than a few sentences.
         Always use camel case for the tags.
-        """
+        """#This is an example of user instructions that will be injected into the system prompt, please modify it to fit your needs
         
         # Load the system prompt and inject user instructions
         system_prompt_path = Path(__file__).parent / "system_prompt.txt"
