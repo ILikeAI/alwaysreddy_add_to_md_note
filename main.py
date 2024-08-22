@@ -41,16 +41,22 @@ class AddToMarkDownNote(BaseAction):
         if recording_filename:
             text = self.AR.transcription_manager.transcribe_audio(recording_filename)
             
+            note_text = ""
+            
+            if self.AR.clipboard_text:
+                note_text += f"""**This text copied in the clipboard at the time:**\n```\n{self.AR.clipboard_text}\n```\n\n"""
+                self.AR.clipboard_text = None
+            
             if text:
                 print("Transcription:\n", text)
-
-                if self.AR.clipboard_text:
-                    text = f"""**This text copied in the clipboard at the time:**\n```\n{self.AR.clipboard_text}\n```\n\n**NOTE:**\n{text}"""
-                    self.AR.clipboard_text = None
-                
+                note_text += f"**NOTE:**\n{text}"
+            
+            if note_text:  # Proceed if there's either clipboard text or transcription
                 if self.use_add_tags_or_bullet_points:
-                    text = self.add_tags_or_bullet_points(text)
-                self.append_to_note(text)
+                    note_text = self.add_tags_or_bullet_points(note_text)
+                self.append_to_note(note_text)
+            else:
+                print("No content to save. Both transcription and clipboard are empty.")
 
     def add_tags_or_bullet_points(self, text):
         """Add tags or bullet points to the text."""
@@ -62,7 +68,7 @@ class AddToMarkDownNote(BaseAction):
         if completion:
             if completion.startswith("NA"):
                 return text
-            return text + "\n" + completion
+            return "\n" + text + "\n" + completion
         else:
             print("Failed to get completion for tags or bullet points.")
             return text
